@@ -57,9 +57,9 @@
 
   #upper[
     #text(size: 16pt, weight: 500)[Resolução Comentada dos Exercícios de]\
-    #text(size: 32pt, weight: 700, fill: primary-color)[#book-title]\
+    #text(size: 24pt, weight: 700, fill: primary-color)[#book-title]\
     #text(size: 16pt, weight: 500)[de]\
-    #text(size: 24pt, weight: 700, fill: primary-color)[#book-author]
+    #text(size: 18pt, weight: 700, fill: primary-color)[#book-author]
   ]
 ]
 
@@ -81,7 +81,7 @@
       column-gutter: 15pt,
       align: (left+bottom, right+horizon),
       [
-        #cite(<Halliday2>, form: "full")
+        #cite(<strogatz-chaos>, form: "full")
       ],
       [
         #image("assets/images/capa.png", width: 3cm)

@@ -14,7 +14,7 @@ Nos três próximos exxercícios, interprete $dot(x) = sin(x)$ como um fluxo sob
   #solution([
     Os *pontos fixos* são tais que $dot(x) = 0$, então:
     $
-      dot(x) = 0 arrow.double sin(x) = 0 arrow.double x = k pi, " para " pi in 0, 1, 2, dots
+      dot(x) = 0 arrow.double sin(x) = 0 arrow.double x = k pi, " para " k = 0, plus.minus 1, plus.minus 2, plus.minus 3, dots
     $
   ])
 
@@ -27,7 +27,7 @@ Nos três próximos exxercícios, interprete $dot(x) = sin(x)$ como um fluxo sob
       cetz.canvas({
         import cetz.draw: *
         plot.plot(
-          size: (9, 2),
+          size: (13.5, 3),
           axis-style: "school-book", 
           x-tick-step: none, y-tick-step: none,
           x-label: $x$, y-label: $dot(x)$,
@@ -68,6 +68,35 @@ Nos três próximos exxercícios, interprete $dot(x) = sin(x)$ como um fluxo sob
     Observemos que a velocidade $dot(x)$ é positiva nas regiões $2k pi < x < (2k+1) pi$ para $k = dots -2, -1, 0, 1, 2, dots$. Em cada uma dessas regiões, a velocidade cresce a partir de um ponto repulsor até o valor $frac(4k+1, 2) pi$, quanto atinge seu valor máximo, e, então, decresce em direção a um ponto fixo atrator, com velocidade cada vez menor.
   ])
 
++ 
+  #set enum(numbering: "a)")
+  + Encontre a aceleração do fluxo $dot.double(x)$ como função de $x$.
+    #solution([
+      $
+        dot.double(x) = frac(d (dot(x)), d t) = frac(d, d t) [sin(x)] arrow.double dot.double(x) = cos(x) dot(x)\
+        arrow.double dot.double(x) = cos(x) sin(x)\
+        arrow.double dot.double(x) = frac(1, 2) sin(2x)
+      $
+    ])
+
+  + Encontre os pontos em que o fluxo tem aceleração positiva máxima.
+    #solution([
+      Para encontrar os pontos de máxima aceleração positiva, precisamos maximizar a função $dot.double(x)$ determinada no item anterior. Observemos que $sin(2x)$ atinje seu valor máximo de 1 quando:
+      $
+        2x^* = frac(pi, 2) + 2k pi, " para " k = 0,  plus.minus 1, plus.minus 2, plus.minus 3, dots\
+        x^* = frac(pi, 4) + k pi, " para " k = 0,  plus.minus 1, plus.minus 2, plus.minus 3, dots
+      $
+    ])
+
++ (Solução exata de $dot(x) = sin(x)$) Como mostrado no texto, $dot(x) = sin(x)$ tem uma solução $t = ln(|frac(csc x_0 + cot x_0, csc(x) + cot(x))|)$ , onde $x_0 = x(0)$ é o valor inicial de $x$.
+  #set enum(numbering: "a)")
+    + Dado a espcífica condiçõ inicial $x_0 = pi/4$, mostre que a solução acima pode ser invertida para obter
+      $
+        x(t) = 2 tan^(-1)(frac(e^t, 1 + sqrt(2))).
+      $
+      Conclua que $x(t) arrow pi$ quando $t arrow infinity$, como mostrado na Seção 2.1. (Você necessita ser bom com identidades trigonométricas para resolver esse pronlema).
+
+    + Tente encontrar a solução analítica para $x(t)$, dado uma condição inicial _arbitrária_.
 
 === Pontos fixos e estabilidade
 
