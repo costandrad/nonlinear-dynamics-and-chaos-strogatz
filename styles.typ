@@ -1,4 +1,11 @@
-#let primary-color = rgb("#f00024")
+#import "@preview/cetz:0.4.1"
+#import "@preview/cetz-plot:0.1.2": *
+
+#let primary-color = rgb("#0f5091")
+
+#let bf(x) = {
+  $math.bold(x)$
+}
 
 #let fmt(number, precision: 3,  sci: true) = {
   if number == 0 {
@@ -219,6 +226,7 @@
   )
 
   //set math.equation(numbering: "(1)", number-align: bottom)
+  set figure.caption(position: top)
 
 
   // 🧭 Numeração de seções e listas

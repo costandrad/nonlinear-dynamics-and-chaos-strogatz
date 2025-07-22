@@ -2,10 +2,10 @@
 
 #show: template.with(
   book: (
-    title: [Título do Livro],
+    title: [Nonlinear Dynamics and Chaos],
     author: (
-      long: [Nome Sobrenome],
-      short: [Sobrenome, N.]
+      long: [Steven H. Strogatz],
+      short: [Strogatz, S. H.]
     )
   ),
   author: [Igo da Costa Andrade]
@@ -13,8 +13,5 @@
 
 
 
-#include "chapters/chapther-01.typ"
+
 #include "chapters/chapther-02.typ"
-#include "chapters/chapther-03.typ"
-#include "chapters/chapther-04.typ"
-#include "chapters/chapther-05.typ"
