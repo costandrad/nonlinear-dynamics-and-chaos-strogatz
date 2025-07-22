@@ -94,12 +94,131 @@ Nos três próximos exxercícios, interprete $dot(x) = sin(x)$ como um fluxo sob
       $
         x(t) = 2 tan^(-1)(frac(e^t, 1 + sqrt(2))).
       $
-      Conclua que $x(t) arrow pi$ quando $t arrow infinity$, como mostrado na Seção 2.1. (Você necessita ser bom com identidades trigonométricas para resolver esse pronlema).
+      Conclua que $x(t) arrow pi$ quando $t arrow infinity$, como mostrado na Seção 2.1. (Você necessita ser bom com identidades trigonométricas para resolver esse problema).
+      #solution([
+        Inicialmente, calculemos:
+        $
+          cases(
+            csc(x_0) = csc(pi/4) = frac(1, sin(pi/4)) = frac(1, sqrt(2)/2) = 2/sqrt(2)  = sqrt(2)\
+            cot(x_0) = cot(pi/4) = 1/tan(pi/4) = 1/1 = 1
+          )
+          &arrow.double csc(x_0) + cot(x_0) = sqrt(2) + 1\
+          &arrow.double csc(x_0) + cot(x_0) = 1 + sqrt(2)
+        $
+        Substituindo a condição inicial na solução exata, obtemos:
+        #text(size: 10pt)[
+          $
+            t = ln(mid(|)frac(csc x_0 + cot x_0, csc(x) + cot(x))mid(|)) &arrow.double t = ln(mid(|) frac(1 + sqrt(2), csc(x) + cot(x)) mid(|)) arrow.double e^t = frac(1 + sqrt(2), csc(x) + cot(x))\
+            &arrow.double frac(1, csc(x) + cot(x)) = frac(2^t, 1 + sqrt(2)) arrow.double frac(1, frac(1, sin(x)) + frac(cos(x), sin(x))) = frac(e^t, 1 + sqrt(2))\
+            &arrow.double frac(sin(x), 1+ cos(x)) = frac(e^t, 1 + sqrt(2))
+          $ 
+          Para resolver a expressão acima, consideremos as seguintes identidades trigonométricas:
+          $
+            sin 2 theta = 2 sin theta cos theta " e " cos^2 theta = frac(1 + cos 2theta, 2) 
+          $
+          Substituindo $alpha = 2 theta$ nas identidades acima, obtemos:
+          $
+            sin alpha = 2 sin(alpha/2) cos(alpha/2) " e " cos^2 (alpha/2) = frac(1 + cos alpha, 2)
+          $
+          Portanto, substituindo as expressões acima na solução, temos:
+          $
+            frac(2 sin(x/2) cos(x/2), 2cos^2 (x/2)) = frac(e^t, 1 + sqrt(2)) &arrow.double frac(sin(x/2), cos(x/2)) = frac(e^t, 1 + sqrt(2))\
+            &arrow.double frac(sin(x/2), cos(x/2)) = frac(e^2, 1+ sqrt(2))\
+            &arrow.double tan(x/2) = frac(e^t, 1 + sqrt(2))\
+            &arrow.double x(t) = 2 tan^(-1)(frac(e^t, 1 + sqrt(2)))
+          $
+
+          Para determinarmos o comportamento de $x(t)$ quando $t arrow infinity$, seja:
+          $
+            u = frac(e^t, 1 + sqrt(2)) arrow.double lim_(t arrow infinity) u = lim_(t arrow infinity) frac(e^t, 1 + sqrt(2)) = + infinity
+          $
+          Portanto,
+
+
+          $
+            lim_(t arrow infinity) x(t) = lim_(u arrow infinity) 2 tan^(-1) (u) = pi
+          $
+        ]
+      ])
 
     + Tente encontrar a solução analítica para $x(t)$, dado uma condição inicial _arbitrária_.
 
-=== Pontos fixos e estabilidade
+      #solution([
+        No item anterior, obtemos a seguinte identidade trigonométrica:
+        $
+          frac(1, csc(x) + cot(x)) = tan(x/2)
+        $
+        Assim, para a solução exata de $dot(x) = sin(x)$, temos:
+        $
+          t = ln(mid(|) frac(csc(x_0) + cot(x_0), csc(x) + cot(x)) mid(|))  arrow.double e^t = frac(tan(x/2), tan(x_0/2)) arrow.double tan(x/2) = tan(x_0/2) e^t \
+          arrow.double x(t) = 2 tan^(-1)[tan(x_0/2) e^t]
+        $
+      ])
 
-#lorem(20)
++ (Um análogo mecânico)
+  #set enum(numbering: "a)")
+  + Encontre um sistema mecânico que seja aproximadamente governado por $dot(x) = sin(x)$.
 
-#pagebreak()
+  + Usando soua intuição física, explique por que agora se torna óbvio que $x^* = 0$ é um ponto fixo instável e $x^* = pi$ é estável.
+
+== Pontos fixos e estabilidade
+
+Analise as seguintes equações graficamente. Em cada caso, desenhe o campo verorial sobre a reta real, encontre todos os pontos fixos, classifique quanto à estabilidade, e desenhe o gráfico de $x(t)$ para diferentes condições iniciais. Então tente por alguns minutos obter a solução analítica para $x(t)$; se você tiver dificuldade, não tente por muito tempo pois em vários casos é impossível resolver a equação em uma forma fechada!
+
++ $dot(x) = 4x^2 - 16$
+  #solution([
+    - *Pontos Fixos*
+    $
+      dot(x) = 0 arrow.double 4x^2 - 16 = 0 arrow.double x^2 = 4 arrow.double x^* = plus.minus 2
+    $
+
+      Como indica a @fig-p2.2.1, o ponto fixo $x^* = -2$ é um ponto atrator enquanto o ponto $x^* = 2$ é repulsor.
+    - *Campo Vetorial*
+    #figure(
+      caption: [Campo vetorial unidimensional para $dot(x) = 4x^2 - 16$],
+      cetz.canvas({
+        import cetz.draw: *
+        plot.plot(
+          size: (8, 4),
+          axis-style: "school-book", 
+          x-tick-step: none, y-tick-step: none, 
+          x-label: $x$, y-label: $dot(x)$,
+          x-ticks: (-2, 2),
+          x-min: -4, x-max: 4,
+          {
+            plot.add(
+              domain: (-2.5, 2.5), 
+              x => calc.pow(x, 2) - 4
+            )
+            plot.add(((2, 0),), mark: "o", mark-style: (stroke: black, fill: white))
+            plot.add(((-2, 0),), mark: "o", mark-style: (stroke: black, fill: black))
+          })
+        set-origin((4, 2.556))
+        line((0,0), (-1, 0), mark: (end: ">"), fill: black)
+        line((-4,0), (-3, 0), mark: (end: ">"), fill: black)
+        line((0,0), (1, 0), mark: (end: ">"), fill: black)
+        line((4,0), (3, 0), mark: (end: ">"), fill: black)
+      })
+    )<fig-p2.2.1>
+
+    - *Solução exata*
+    $
+      frac(d x, d t) = 4x^2 - 16 &arrow.double frac(d x, x^2 - 4) = 4d t arrow.double frac(d x, x^2 - 4) = 4d t\
+      &arrow.double frac(d x, (x - 2)(x + 2)) = 4 d t arrow.double 1/4 frac(d x, x-2) - 1/4 frac(d x, x + 2) = 4 d t\
+      &arrow.double frac(d x, x+2) - frac(d x, x - 2) = -16 d t\
+      &arrow.double integral_(x_0)^x frac(d x, x+2) - integral_(x_0)^x frac(d x, x-2) = -16 integral_0^t d t\
+      &arrow.double  (ln |x + 2| lr(|)_(x_0)^x) - (ln |x - 2| lr(|)_(x_0)^x)  = -16t\
+      &arrow.double (ln|x + 2| - ln|x_0 + 2|) - (ln|x-2| - ln|x_0 - 2|) = -16 t\
+      &arrow.double (ln|x + 2| - ln|x - 2|) - (ln|x_0+2| - ln|x_0 - 2|) = -16 t\
+      &arrow.double ln [frac((x+2), (x-2)) frac((x_0 - 2), (x_0 + 2))] = -16t\
+      &arrow.double frac((x+2), (x-2)) frac((x_0 - 2), (x_0 + 2)) = e^(-16t)\
+      &arrow.double frac(x+2, x-2) = (frac(x_0 + 2, x_0 - 2))  e^(-16t)\
+      &arrow.double x + 2 = [(frac(x_0 + 2, x_0 - 2))  e^(-16t)] (x - 2)\
+      &arrow.double [1 - (frac(x_0 + 2, x_0 - 2))  e^(-16t)] x = -2 [1 + (frac(x_0 + 2, x_0 - 2))  e^(-16t)]\
+      &arrow.double x(t) =  -frac(2(1 + (frac(x_0 + 2, x_0 - 2))  e^(-16t)), 1 - (frac(x_0 + 2, x_0 - 2))  e^(-16t))
+
+    $
+  ])
+
+
+
